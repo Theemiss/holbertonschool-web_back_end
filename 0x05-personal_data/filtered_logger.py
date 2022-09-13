@@ -50,8 +50,8 @@ def get_db():
     """
     Returns a connector to the database
     """
-    dbUser = os.getenv('PERSONAL_DATA_DB_USERNAME', 'themis')
-    dbPassword = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    dbUser = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    dbPassword = os.getenv('PERSONAL_DATA_DB_PASSWORD', ' ')
     dbHost = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
     dbName = os.getenv('PERSONAL_DATA_DB_NAME')
     return mysql.connector.connection.MySQLConnection(user=dbUser,
