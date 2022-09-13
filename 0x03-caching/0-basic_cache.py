@@ -19,10 +19,9 @@ class BasicCache(BaseCaching):
         """
         set item to cache
         """
-        if key or item:
+        if key and  item:
             self.cache_data[key] = item
-        else:
-            pass
+
 
     def get(self, key):
         """
