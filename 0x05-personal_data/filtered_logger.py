@@ -5,6 +5,8 @@ obscure log messages
 import logging
 import re
 from typing import List
+import mysql.connector
+import os
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
@@ -42,3 +44,17 @@ def get_logger() -> logging.Logger:
     stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
     logger.addHandler(stream_handler)
     return logger
+
+
+def get_db():
+    """
+    Returns a connector to the database
+    """
+    dbUser = os.getenv('PERSONAL_DATA_DB_USERNAME', 'themis')
+    dbPassword = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    dbHost = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+    dbName = os.getenv('PERSONAL_DATA_DB_NAME')
+    return mysql.connector.connection.MySQLConnection(user=dbUser,
+                                                      password=dbPassword,
+                                                      host=dbHost,
+                                                      database=dbName)
