@@ -5,12 +5,12 @@ obscure log messages
 import logging
 import re
 from typing import List
+PII_FIELDS = ["email", "phone", "ssn", "password", "ip"]
 
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
-
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
@@ -31,3 +31,12 @@ class RedactingFormatter(logging.Formatter):
             message = re.sub(fr'{field}=.*?{separator}',
                              f'{field}={redaction}{separator}', message)
         return message
+
+
+def get_logger() -> logging.Logger:
+    """Returns a logger object"""
+    logger_s = logging.Logger("user_data", level=logging.INFO)
+    logger_s.propagate = False
+    logger_s.addHandler(logging.StreamHandler().setFormatter(
+        RedactingFormatter(PII_FIELDS)))
+    return logger_s
