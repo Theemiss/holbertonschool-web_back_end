@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 obscure log messages
 """
@@ -51,7 +51,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     Returns a connector to the database
     """
     dbUser = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
-    dbPassword = os.getenv('PERSONAL_DATA_DB_PASSWORD', ' ')
+    dbPassword = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
     dbHost = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
     dbName = os.getenv('PERSONAL_DATA_DB_NAME')
     return mysql.connector.connection.MySQLConnection(user=dbUser,
