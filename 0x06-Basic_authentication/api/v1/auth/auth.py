@@ -8,7 +8,7 @@ This module contains the Auth class
 
 class Auth():
     """
-    auth.py
+    auth.py module for the API
     """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
